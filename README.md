@@ -1,4 +1,5 @@
-#Anuglar and Express to create a WebApp with Front and Back -end Connected with MongoDB
+#Anuglar and Express to create API. Connected with MongoDB.
+#Forehand + Backhand!
 ###Created Angular.js page with "form" and "on submit" runs search() function
 ###Set up controller.js like this
 ```js
