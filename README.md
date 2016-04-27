@@ -1,7 +1,7 @@
 #Anuglar and Express to create a WebApp with Front and Back -end
 ###Created Angular.js page with <form> and on submit runs search() function
 ###Set up controller.js like this
-```
+```js
 var searchApp = angular.module('searchApp', []);
 
 searchApp.controller('searchController', function($scope, $http) {
@@ -26,7 +26,7 @@ searchApp.controller('searchController', function($scope, $http) {
 ```
 check https://docs.angularjs.org/api/ng/service/$http for documentation on Angular.js $HTTP requests
 ###In Express app.js - Enabled CORS
-```
+```js
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -35,7 +35,7 @@ app.use(function(req, res, next) {
 ```
 ###In Express index.js - setup a route
 ####This will handle http requests
-```
+```js
 var express = require('express');
 var router = express.Router();
 
