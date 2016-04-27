@@ -10,15 +10,15 @@ searchApp.controller('searchController', function($scope, $http) {
         $scope.message = 'Hello World';
 
         var apiUrl = "http://localhost:3000/search";
-        $http.post(apiUrl, {"name": "Will"}).then(
+        $http.post(apiUrl, {}).then(
             function successCallback(response) {
                 $scope.result = response.data;
-                // this callback will be called asynchronously
-                // when the response is available
+                	// this callback will be called asynchronously
+        		// when the response is available
             }, function errorCallback(response) {
                 $scope.result = "Error Mister Man...or woman!!";
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
+                	// called asynchronously if an error occurs
+                	// or server returns response with an error status.
             }
         );
     };
@@ -34,9 +34,15 @@ app.use(function(req, res, next) {
 });
 ```
 ###In Express index.js - setup a route
-####This will handle http requests coming in from Anuglar (get or post)
+####This will handle http requests
 ```
+var express = require('express');
+var router = express.Router();
+
 router.post('/search', function(req, res, next) {
 	res.json({message: "Success"});
 });
+
+module.exports = router;
+
 ```
