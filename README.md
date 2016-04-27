@@ -13,8 +13,8 @@ searchApp.controller('searchController', function($scope, $http) {
         $http.post(apiUrl, {}).then(
             function successCallback(response) {
                 $scope.result = response.data;
-                	// this callback will be called asynchronously
-        		// when the response is available
+			// this callback will be called asynchronously
+			// when the response is available
             }, function errorCallback(response) {
                 $scope.result = "Error Mister Man...or woman!!";
                 	// called asynchronously if an error occurs
