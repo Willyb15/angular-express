@@ -17,8 +17,8 @@ searchApp.controller('searchController', function($scope, $http) {
 			// when the response is available
             }, function errorCallback(response) {
                 $scope.result = "Error Mister Man...or woman!!";
-                	// called asynchronously if an error occurs
-                	// or server returns response with an error status.
+			// called asynchronously if an error occurs
+			// or server returns response with an error status.
             }
         );
     };
