@@ -35,7 +35,7 @@ app.use(function(req, res, next) {
 ```
 ###In Express index.js - setup a route
 ```
-router.get('/search', function(req, res, next) {
+router.post('/search', function(req, res, next) {
 	res.json({message: "Success"});
 });
 ```
