@@ -4,19 +4,25 @@
 ```
 var searchApp = angular.module('searchApp', []);
 
-searchApp.controller('searchController', function($scope, $http){
-	
-	$scope.search = function(){
-		$scope.message = 'Hello World';
+searchApp.controller('searchController', function($scope, $http) {
 
-		var apiUrl = "http://localhost:3000/search";
+    $scope.search = function() {
+        $scope.message = 'Hello World';
 
-		$http.get(apiUrl, {"name" : "Will" }).success(function(result, status){
-			$scope.status = status;
-			$scope.result = "Congratulations! You connected to the server";
-		});		
-	};
-}); 
+        var apiUrl = "http://localhost:3000/search";
+        $http.post(apiUrl, {"name": "Will"}).then(
+            function successCallback(response) {
+                $scope.result = response.data;
+                // this callback will be called asynchronously
+                // when the response is available
+            }, function errorCallback(response) {
+                $scope.result = "Error Mister Man...or woman!!";
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            }
+        );
+    };
+});
 ```
 check https://docs.angularjs.org/api/ng/service/$http for documentation on Angular.js $HTTP requests
 ###In Express app.js - Enabled CORS
