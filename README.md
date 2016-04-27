@@ -33,6 +33,7 @@ app.use(function(req, res, next) {
   next();
 });
 ```
+http://enable-cors.org/server_expressjs.html for documentation on Cross Origin Resource Sharing
 ###In Express index.js - setup a route
 ####This will handle http requests
 ```js
