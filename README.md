@@ -1,5 +1,5 @@
 #Anuglar and Express to create a WebApp with Front and Back -end
-###Created Angular page with <form> and on submit runs search() function
+###Created Angular.js page with <form> and on submit runs search() function
 ###Set up controller.js like this
 ```
 var searchApp = angular.module('searchApp', []);
@@ -18,6 +18,7 @@ searchApp.controller('searchController', function($scope, $http){
 	};
 }); 
 ```
+check https://docs.angularjs.org/api/ng/service/$http for documentation on Angular.js $HTTP requests
 ###In Express app.js - Enabled CORS
 ```
 app.use(function(req, res, next) {
