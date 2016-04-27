@@ -69,7 +69,7 @@ searchApp.controller('searchController', function($scope, $http){
 
 
     $scope.search = function(){
-        var apiUrl = 'http://10.150.41.253:3000/search';        
+        var apiUrl = 'http://localhost:3000/search';        
         $http({
             method: 'POST',
             url: apiUrl,
