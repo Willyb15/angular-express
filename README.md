@@ -1,5 +1,5 @@
 #Anuglar and Express to create a WebApp with Front and Back -end Connected with MongoDB
-###Created Angular.js page with <form> and on submit runs search() function
+###Created Angular.js page with <form> and "on submit" runs search() function
 ###Set up controller.js like this
 ```js
 var searchApp = angular.module('searchApp', []);
