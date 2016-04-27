@@ -34,6 +34,7 @@ app.use(function(req, res, next) {
 });
 ```
 ###In Express index.js - setup a route
+####This will handle http requests coming in from Anuglar (get or post)
 ```
 router.post('/search', function(req, res, next) {
 	res.json({message: "Success"});
