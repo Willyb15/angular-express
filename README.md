@@ -47,8 +47,51 @@ router.post('/search', function(req, res, next) {
 module.exports = router;
 ```
 
-#After setting this up We Ramped it up and Connected MongoDB
-###Controller.js looks like this now
+#After setup, time to ramp up and configure MongoDB.
+### Updated index.js to handle GET and POST requests and configure Mongo
+####Configured script to handle GET requests and return "response" --data from mongodb -- to client 
+####Configured script to handle POST request and return a students name if inside the DB or add Student to db if not found
+```js
+var express = require('express');
+var router = express.Router();
+var MongoClient = require('mongodb').MongoClient;
+var mongoUrl = 'mongodb://localhost:27017/btb';
+
+var db;
+//Create a connection to mongo
+MongoClient.connect(mongoUrl, function(error, database){
+	db = database;
+});
+
+router.get('/search', function(req, res, next) {
+	db.collection('students').find().toArray(function(error, studentResult){
+		res.json(studentResult);
+	});
+});
+
+
+router.post('/search', function(req, res, next) {
+	console.log('Someone hit the server!!');
+	//We get name from teh post request (in this case, from Angular)
+	var individualStudent = req.body.name;
+	db.collection('students').find({name: individualStudent}).toArray(function(error, studentResult){
+		if(studentResult.length === 0){
+			db.collection('students').insertOne({
+				name: individualStudent
+			});
+			res.json("Sorry, there were no results. We have added " + individualStudent + " to the databtase");
+		}else{
+			res.json(studentResult[0].name + ' student');
+		}
+	});
+});
+
+module.exports = router;
+
+```
+###Updated Angular controller.js 
+####On load Angular makes GET request to API and ng-repeat's the response (from Mongo).
+####On submit Angular makes POST request and displays response into view
 ```js
 var searchApp = angular.module('searchApp', []);
 
@@ -86,48 +129,9 @@ searchApp.controller('searchController', function($scope, $http){
             });
     };
 
-})
+});
 ```
-###Configured Mondo DB into the Index.js folder like so
-```js
-var express = require('express');
-var router = express.Router();
-var MongoClient = require('mongodb').MongoClient;
-var mongoUrl = 'mongodb://localhost:27017/btb';
-
-var db;
-//Create a connection to mongo
-MongoClient.connect(mongoUrl, function(error, database){
-	db = database;
-});
-
-router.get('/search', function(req, res, next) {
-	db.collection('students').find().toArray(function(error, studentResult){
-		res.json(studentResult);
-	});
-});
-
-
-router.post('/search', function(req, res, next) {
-	console.log('Someone hit the server!!');
-	//We get name from teh post request (in this case, from Angular)
-	var individualStudent = req.body.name;
-	db.collection('students').find({name: individualStudent}).toArray(function(error, studentResult){
-		if(studentResult.length === 0){
-			db.collection('students').insertOne({
-				name: individualStudent
-			});
-			res.json("Sorry, there were no results. We have added " + individualStudent + " to the databtase");
-		}else{
-			res.json(studentResult[0].name + ' student');
-		}
-	});
-});
-
-
-module.exports = router;
-```
-###Updated HTML with Data
+###Updated HTML to Display data bound from the controller.js
 ```html
 	<body ng-controller="searchController">
 	<li ng-repeat="name in studentsOnLoad">
